@@ -3,7 +3,7 @@ const validUrl = require('valid-url')
 const shortid = require('shortid')
 const Url = require('./shorturl.model')
 
-const baseUrl = 'http:localhost:8080'
+const baseUrl = 'https://shorturl-3mae.onrender.com'
 
 const app = express.Router()
 
@@ -24,10 +24,10 @@ console.log(urlcode)
                 res.send(url)
             } else {
                 if(domain){
-                    let num=Math.random()*3
-                    console.log(num)
+                    let num=shortid.generate()
+                    //console.log(num)
                     let d=`${num}-${domain}`
-                    console.log(d)
+                    //console.log(d)
                     const shorturl =`${baseUrl}/${d}`
                
                     url = new Url({longurl,shorturl,urlcode:d,date: new Date()})
@@ -59,12 +59,12 @@ console.log(urlcode)
 
 app.get('/:code', async (req, res) => {
     try {
-       console.log(req.params);
+       //console.log(req.params);
         const url = await Url.findOne({
             urlcode: req.params.code
         })
         if (url) {
-            console.log(url.longurl);
+           // console.log(url.longurl);
            return res.redirect(url.longurl)
         } else {
             return res.status(404).send('No URL Found')
