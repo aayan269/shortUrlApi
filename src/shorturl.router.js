@@ -59,12 +59,12 @@ console.log(urlcode)
 
 app.get('/:code', async (req, res) => {
     try {
-       //console.log(req.params);
+       console.log(req.params);
         const url = await Url.findOne({
             urlcode: req.params.code
         })
         if (url) {
-           // console.log(url.longurl);
+            console.log(url.longurl);
            return res.redirect(url.longurl)
         } else {
             return res.status(404).send('No URL Found')
