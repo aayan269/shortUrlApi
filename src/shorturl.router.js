@@ -3,7 +3,7 @@ const validUrl = require('valid-url')
 const shortid = require('shortid')
 const Url = require('./shorturl.model')
 
-const baseUrl = 'https://shorturl-3mae.onrender.com'
+const baseUrl = 'http://localhost:8080'
 
 const app = express.Router()
 
